@@ -6,5 +6,11 @@
 </head>
 <body>
     <h1>The all blogs page</h1>
+
+    {% for blog in blogs %}
+    <h2>{{ blog.title }}</h2>
+    <p>Обн.: {{ blog.publish }}</p>
+    {% endfor %}
+
 </body>
 </html>
