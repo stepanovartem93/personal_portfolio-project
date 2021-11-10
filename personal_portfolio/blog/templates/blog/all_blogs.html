@@ -12,6 +12,8 @@
     {% for blog in blogs %}
     <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
     <p>Обн.: {{ blog.publish }}</p>
+    <p>Текст: {{ blog.body|striptags|truncatechars:100 }}</p>
+    <!-- |striptags - пропускает все теги html в тексте при отображении на странице.  |truncatechars:100 - ограничивает количество выводимых символов до 100.-->
     {% endfor %}
 
 </body>
