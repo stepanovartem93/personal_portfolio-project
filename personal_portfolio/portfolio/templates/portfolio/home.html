@@ -8,10 +8,14 @@
     <title>Домашняя страница</title>
 </head>
 <body>
-    <h1>Сайт портфолио</h1>
+    <h1>Мой сайт</h1>
     <p>Создано Артемом Степановым</p>
-    
+    <a href="{% url 'blog:all_blogs' %}">Blog</a>
+    <br>
+    <a href="{% static 'portfolio/sav.pdf' %}">Resume</a>
+    <br>
     <img src="{% static 'portfolio/im.jpg' %}" width="400" height="300">
+    
 
     {% for project in projects %}
 
@@ -20,7 +24,7 @@
     <img src="{{ project.image.url }}">
     
     {% if project.url %}
-    <a href="{{ project.url }}">Link</a>
+    <br><a href="{{ project.url }}">Link</a>
     {% endif %}
 
     {% endfor %}
