@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All blogs</title>
-</head>
-<body>
-    <h1>The all blogs page</h1>
-    <h2>Артём has written {{ blogs.count }} post{{ blogs.count|pluralize }}</h2> 
-    <!-- {{ blogs.count|pluralize }} - позволяет правильно указать окончание в зависимости от количества написанных постов (один пост или много постов). 
-        Однако, похоже работает только на английском. Может стоит  перевести на русский и также заработает?!... -->
-    {% for blog in blogs %}
-    <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-    <p>Обн.: {{ blog.publish }}</p>
-    <p>Текст: {{ blog.body|striptags|truncatechars:100 }}</p>
-    <!-- |striptags - пропускает все теги html в тексте при отображении на странице.  |truncatechars:100 - ограничивает количество выводимых символов до 100.-->
-    {% endfor %}
+{% extends 'portfolio/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+<h1>The all blogs page</h1>
+<h2>Артём has written {{ blogs.count }} post{{ blogs.count|pluralize }}</h2> 
+<!-- {{ blogs.count|pluralize }} - позволяет правильно указать окончание в зависимости от количества написанных постов (один пост или много постов). 
+    Однако, похоже работает только на английском. Может стоит  перевести на русский и также заработает?!... -->
+{% for blog in blogs %}
+<a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+<p>Обн.: {{ blog.publish }}</p>
+<p>Текст: {{ blog.body|striptags|truncatechars:100 }}</p>
+<!-- |striptags - пропускает все теги html в тексте при отображении на странице.  |truncatechars:100 - ограничивает количество выводимых символов до 100.-->
+{% endfor %}
+
+{% endblock  %}
